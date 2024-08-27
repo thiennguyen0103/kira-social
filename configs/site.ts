@@ -25,6 +25,69 @@ export const siteConfig = {
       filledIcon: Icons.filledPlayCircle,
     },
   ],
+  // TODO: Set correct path
+  leftMenu: [
+    {
+      id: "myPosts",
+      name: "My Posts",
+      icon: "/posts.png",
+      path: "/",
+    },
+    {
+      id: "activities",
+      name: "Activities",
+      icon: "/activity.png",
+      path: "/",
+    },
+    {
+      id: "marketplace",
+      name: "Marketplace",
+      icon: "/market.png",
+      path: "/",
+    },
+    {
+      id: "events",
+      name: "Events",
+      icon: "/events.png",
+      path: "/",
+    },
+    {
+      id: "albums",
+      name: "Albums",
+      icon: "/albums.png",
+      path: "/",
+    },
+    {
+      id: "videos",
+      name: "Videos",
+      icon: "/videos.png",
+      path: "/",
+    },
+    {
+      id: "news",
+      name: "News",
+      icon: "/news.png",
+      path: "/",
+    },
+    {
+      id: "courses",
+      name: "Courses",
+      icon: "/courses.png",
+      path: "/",
+    },
+    {
+      id: "lists",
+      name: "Lists",
+      icon: "/lists.png",
+      path: "/",
+    },
+    {
+      id: "settings",
+      name: "Settings",
+      icon: "/settings.png",
+      path: "/",
+    },
+  ],
   routes: {
     home: "/",
     signIn: "/sign-in",

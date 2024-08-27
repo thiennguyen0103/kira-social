@@ -2,10 +2,12 @@
 
 import { siteConfig } from "@/configs/site";
 import { cn } from "@/lib/utils";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icons } from "./icons";
 import Logo from "./logo";
+import { MobileNav } from "./mobile-nav";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
@@ -13,9 +15,10 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className="sticky left-0 top-0 w-full bg-background px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+    <header className="sticky z-50 left-0 top-0 w-full bg-background px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
       <div className="flex h-16 items-center justify-between gap-8">
-        <div className="md:hidden lg:block">
+        <MobileNav />
+        <div className="hidden md:block">
           <Logo />
         </div>
         <div className="hidden w-[50%] flex-1 items-center justify-between text-sm md:flex">
@@ -42,11 +45,18 @@ const Header = () => {
             <Input placeholder="Search..." />
           </div>
         </div>
-        <div className="">
-          <Button>
-            <Icons.personCircle className="mr-2 h-5 w-5" />
-            Login
-          </Button>
+        <div className="flex items-center">
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <Button asChild>
+              <Link href={siteConfig.routes.signIn}>
+                <Icons.personCircle className="mr-2 h-5 w-5" />
+                Sign In
+              </Link>
+            </Button>
+          </SignedOut>
         </div>
       </div>
     </header>

@@ -123,4 +123,22 @@ export const Icons = {
       <path d="M12 2.25c-5.376 0-9.75 4.374-9.75 9.75s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25ZM9.375 16.125v-8.25L16.125 12l-6.75 4.125Z"></path>
     </svg>
   ),
+  hamburger: (props: IconProps) => (
+    <svg
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M3.975 5.975h16"></path>
+      <path d="M3.975 11.975h16"></path>
+      <path d="M3.975 17.975h16"></path>
+    </svg>
+  ),
 };

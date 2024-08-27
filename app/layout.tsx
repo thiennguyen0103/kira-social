@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import { cn } from "@/lib/utils";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import { ReactNode } from "react";
@@ -21,19 +22,21 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          "flex min-h-screen flex-col bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
-        <Header />
-        <div className="flex-1 bg-slate-100 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
-          {children}
-        </div>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            "flex min-h-screen flex-col bg-background font-sans antialiased",
+            fontSans.variable,
+          )}
+        >
+          <Header />
+          <main className="flex-1 bg-slate-100 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+            {children}
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
