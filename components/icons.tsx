@@ -141,4 +141,37 @@ export const Icons = {
       <path d="M3.975 17.975h16"></path>
     </svg>
   ),
+  check: (props: IconProps) => (
+    <svg
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M20 6 9 17l-5-5"></path>
+    </svg>
+  ),
+  x: (props: IconProps) => (
+    <svg
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M18 6 6 18"></path>
+      <path d="m6 6 12 12"></path>
+    </svg>
+  ),
 };
