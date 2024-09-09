@@ -2,11 +2,10 @@ import { siteConfig } from "@/configs/site";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Card } from "../ui/card";
 
 const MediaCard = () => {
   return (
-    <Card className="p-6">
+    <div>
       {siteConfig.leftMenu.map((menu) => (
         <Link
           key={menu.id}
@@ -19,7 +18,7 @@ const MediaCard = () => {
           <span>{menu.name}</span>
         </Link>
       ))}
-    </Card>
+    </div>
   );
 };
 

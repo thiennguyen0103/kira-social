@@ -15,8 +15,8 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className="sticky z-50 left-0 top-0 w-full bg-background px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 border-b">
-      <div className="flex h-16 items-center justify-between gap-8">
+    <header className="sticky left-0 top-0 z-50 h-16 w-full border-b bg-background">
+      <div className="container flex h-full items-center justify-between gap-8">
         <MobileNav />
         <div className="hidden md:block">
           <Logo />

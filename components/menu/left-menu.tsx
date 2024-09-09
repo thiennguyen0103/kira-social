@@ -1,6 +1,6 @@
-import Ad from "../ad";
 import MediaCard from "../card/media-card";
 import ProfileCard from "../card/profile-card";
+import { Separator } from "../ui/separator";
 
 interface ILeftMenuProps {
   type: "home" | "profile";
@@ -8,10 +8,16 @@ interface ILeftMenuProps {
 
 const LeftMenu = ({ type }: ILeftMenuProps) => {
   return (
-    <div className="flex flex-col gap-6">
-      {type === "home" && <ProfileCard />}
-      <MediaCard />
-      <Ad size="sm" />
+    <div className="h-[calc(100vh-64px)] overflow-y-auto py-4">
+      <div className="flex flex-col gap-2">
+        {type === "home" && (
+          <>
+            <ProfileCard />
+            <Separator />
+          </>
+        )}
+        <MediaCard />
+      </div>
     </div>
   );
 };

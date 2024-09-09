@@ -32,9 +32,7 @@ export default function RootLayout({
           )}
         >
           <Header />
-          <main className="flex-1 bg-slate-100 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
-            {children}
-          </main>
+          <main className="flex-1">{children}</main>
         </body>
       </html>
     </ClerkProvider>

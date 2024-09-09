@@ -28,7 +28,7 @@ const ProfileCard = async () => {
   // if (!user) return null;
 
   return (
-    <Card className="p-6">
+    <div>
       <div className="relative h-20">
         <Image
           // src={user.cover || "/noCover.png"}
@@ -42,7 +42,7 @@ const ProfileCard = async () => {
           className="absolute -bottom-6 left-0 right-0 z-10 m-auto h-12 w-12 rounded-full object-cover ring-1 ring-white"
         />
       </div>
-      <div className="flex h-full flex-col items-center gap-2">
+      <div className="flex h-full flex-col items-center gap-2 pt-6">
         <span className="font-semibold">
           {/* {user.name && user.surname
             ? user.name + " " + user.surname
@@ -80,7 +80,7 @@ const ProfileCard = async () => {
           <Link href={siteConfig.routes.profile}>My Profile</Link>
         </Button>
       </div>
-    </Card>
+    </div>
   );
 
   return (
