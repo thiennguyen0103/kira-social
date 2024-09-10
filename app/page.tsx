@@ -1,4 +1,5 @@
 import AddPost from "@/components/add-post";
+import Feed from "@/components/feed/feed";
 import LeftMenu from "@/components/menu/left-menu";
 import RightMenu from "@/components/menu/right-menu";
 import Stories from "@/components/stories";
@@ -10,9 +11,10 @@ export default function Home() {
         <div className="sticky left-0 top-0 hidden w-full max-w-64 xl:block">
           <LeftMenu type="home" />
         </div>
-        <div className="px-auto sticky flex w-full max-w-[680px] flex-1 flex-col gap-6 py-4">
+        <div className="px-auto sticky flex w-full flex-1 flex-col gap-6 p-4">
           <Stories />
           <AddPost />
+          <Feed />
         </div>
         <div className="hidden w-full max-w-72 lg:block">
           <RightMenu
