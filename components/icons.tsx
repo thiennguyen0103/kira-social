@@ -190,4 +190,34 @@ export const Icons = {
       <path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
     </svg>
   ),
+  moreHorizontal: (props: IconProps) => (
+    <svg
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M12 11a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"></path>
+      <path d="M19 11a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"></path>
+      <path d="M5 11a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"></path>
+    </svg>
+  ),
+  filledSend: (props: IconProps) => (
+    <svg
+      width="24"
+      height="24"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M.75 21.75 23.25 12 .75 2.25v7.5l15 2.25-15 2.25v7.5Z"></path>
+    </svg>
+  ),
 };

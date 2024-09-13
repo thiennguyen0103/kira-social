@@ -1,33 +1,36 @@
 "use client";
 
 import { deletePost } from "@/lib/actions";
-import Image from "next/image";
-import { useState } from "react";
+import { Icons } from "../icons";
+import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 const PostInfo = ({ postId }: { postId: number }) => {
-  const [open, setOpen] = useState(false);
-
   const deletePostWithId = deletePost.bind(null, postId);
   return (
-    <div className="relative">
-      <Image
-        src="/more.png"
-        width={16}
-        height={16}
-        alt=""
-        onClick={() => setOpen((prev) => !prev)}
-        className="cursor-pointer"
-      />
-      {open && (
-        <div className="absolute right-0 top-4 z-30 flex w-32 flex-col gap-2 rounded-lg bg-white p-4 text-xs shadow-lg">
-          <span className="cursor-pointer">View</span>
-          <span className="cursor-pointer">Re-post</span>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon">
+          <Icons.moreHorizontal className="h-5 w-5" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem className="cursor-pointer">View</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">Re-post</DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <form action={deletePostWithId}>
-            <button className="text-red-500">Delete</button>
+            <button type="submit" className="text-red-500">
+              Delete
+            </button>
           </form>
-        </div>
-      )}
-    </div>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

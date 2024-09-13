@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { Post as PostType, User } from "@prisma/client";
+import { formatDistance } from "date-fns";
 import Image from "next/image";
 import { Suspense } from "react";
 import Comments from "./comments";
@@ -15,7 +16,7 @@ type FeedPostType = PostType & { user: User } & {
 const Post = ({ post }: { post: FeedPostType }) => {
   const { userId } = auth();
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 rounded-md bg-muted p-4">
       {/* USER */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -26,11 +27,20 @@ const Post = ({ post }: { post: FeedPostType }) => {
             alt=""
             className="h-10 w-10 rounded-full"
           />
-          <span className="font-medium">
-            {post.user.name && post.user.surname
-              ? post.user.name + " " + post.user.surname
-              : post.user.username}
-          </span>
+          <div className="flex flex-col">
+            <div className="text-lg font-medium">
+              {post.user.name && post.user.surname
+                ? post.user.name + " " + post.user.surname
+                : post.user.username}
+            </div>
+            <div className="text-sm font-medium">
+              {post.createdAt
+                ? formatDistance(new Date(post.createdAt), new Date(), {
+                    addSuffix: true,
+                  })
+                : ""}
+            </div>
+          </div>
         </div>
         {userId === post.user.id && <PostInfo postId={post.id} />}
       </div>

@@ -2,10 +2,22 @@
 
 import { addComment } from "@/lib/actions";
 import { useUser } from "@clerk/nextjs";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Comment, User } from "@prisma/client";
 import Image from "next/image";
 import { useOptimistic, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { EmojiPicker } from "../emoji-picker";
+import { Icons } from "../icons";
+import { Button } from "../ui/button";
+import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import { Input } from "../ui/input";
 type CommentWithUser = Comment & { user: User };
+
+const formSchema = z.object({
+  desc: z.string().min(1),
+});
 
 const CommentList = ({
   comments,
@@ -16,14 +28,18 @@ const CommentList = ({
 }) => {
   const { user } = useUser();
   const [commentState, setCommentState] = useState(comments);
-  const [desc, setDesc] = useState("");
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      desc: "",
+    },
+  });
 
-  const add = async () => {
-    if (!user || !desc) return;
-
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (!user || !values.desc) return;
     addOptimisticComment({
       id: Math.random(),
-      desc,
+      desc: values.desc,
       createdAt: new Date(Date.now()),
       updatedAt: new Date(Date.now()),
       userId: user.id,
@@ -44,8 +60,9 @@ const CommentList = ({
       },
     });
     try {
-      const createdComment = await addComment(postId, desc);
+      const createdComment = await addComment(postId, values.desc);
       setCommentState((prev) => [createdComment, ...prev]);
+      form.reset();
     } catch (err) {}
   };
 
@@ -53,6 +70,7 @@ const CommentList = ({
     commentState,
     (state, value: CommentWithUser) => [value, ...state],
   );
+
   return (
     <>
       {user && (
@@ -64,24 +82,39 @@ const CommentList = ({
             height={32}
             className="h-8 w-8 rounded-full"
           />
-          <form
-            action={add}
-            className="flex w-full flex-1 items-center justify-between rounded-xl bg-slate-100 px-6 py-2 text-sm"
-          >
-            <input
-              type="text"
-              placeholder="Write a comment..."
-              className="flex-1 bg-transparent outline-none"
-              onChange={(e) => setDesc(e.target.value)}
-            />
-            <Image
-              src="/emoji.png"
-              alt=""
-              width={16}
-              height={16}
-              className="cursor-pointer"
-            />
-          </form>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+              <div className="flex gap-2">
+                <FormField
+                  control={form.control}
+                  name="desc"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormControl>
+                        <div className="relative">
+                          <Input
+                            placeholder="Write a comment..."
+                            className="border-0 border-none bg-zinc-200/90 pr-14 focus-visible:ring-0 focus-visible:ring-offset-0"
+                            {...field}
+                          />
+                          <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                            <EmojiPicker
+                              onChange={(emoji: string) =>
+                                field.onChange(`${field.value} ${emoji}`)
+                              }
+                            />
+                          </div>
+                        </div>
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <Button size="icon" type="submit">
+                  <Icons.filledSend className="h-5 w-5" />
+                </Button>
+              </div>
+            </form>
+          </Form>
         </div>
       )}
       <div className="">
@@ -119,14 +152,10 @@ const CommentList = ({
                 <div className="">Reply</div>
               </div>
             </div>
-            {/* ICON */}
-            <Image
-              src="/more.png"
-              alt=""
-              width={16}
-              height={16}
-              className="h-4 w-4 cursor-pointer"
-            ></Image>
+            {/* TODO: handle comment actions */}
+            <Button variant="ghost" size="icon">
+              <Icons.moreHorizontal className="h-5 w-5" />
+            </Button>
           </div>
         ))}
       </div>
