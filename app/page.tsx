@@ -17,22 +17,7 @@ export default function Home() {
           <Feed />
         </div>
         <div className="hidden w-full max-w-72 lg:block">
-          <RightMenu
-            user={{
-              avatar: "",
-              city: "",
-              cover: "",
-              createdAt: new Date(),
-              description: "",
-              id: "1",
-              name: "Thien",
-              school: "test",
-              surname: "t",
-              username: "tehio",
-              website: "rterae",
-              work: "te",
-            }}
-          />
+          <RightMenu />
         </div>
       </div>
     </div>

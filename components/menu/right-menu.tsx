@@ -1,12 +1,11 @@
-import { User } from "@prisma/client";
 import Birthdays from "../birthdays";
 import FriendRequests from "../friend-requests";
 
-interface IRightMenuProps {
-  user?: User;
-}
+// interface IRightMenuProps {
+//   user?: User;
+// }
 
-const RightMenu = ({ user }: IRightMenuProps) => {
+const RightMenu = () => {
   return (
     <div className="flex flex-col gap-6 py-4">
       <FriendRequests />
