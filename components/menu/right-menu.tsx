@@ -8,7 +8,7 @@ interface IRightMenuProps {
 
 const RightMenu = ({ user }: IRightMenuProps) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 py-4">
       <FriendRequests />
       <Birthdays />
     </div>

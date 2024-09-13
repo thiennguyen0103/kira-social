@@ -5,6 +5,8 @@ import StoryList from "./story-list";
 const Stories = async () => {
   const { userId: currentUserId } = auth();
 
+  console.log(currentUserId);
+
   if (!currentUserId) return null;
 
   const stories = await prisma.story.findMany({
